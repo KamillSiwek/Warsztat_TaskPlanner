@@ -3,16 +3,16 @@ package pl.coderslab.warsztatkoncowytaskplanner.Services;
 import java.io.Serializable;
 import java.util.Collection;
 
-public interface BaseService<D, I extends Serializable> {
+public interface BaseService<T, I extends Serializable> {
 
-    D save(D dto);
+    T save(T dto);
 
-    D update(D dto, I id);
+    T update(T dto, I id);
 
-    D find(I id);
+    T find(I id);
 
     Boolean remove(I id);
 
-    Collection<D> getAll();
+    Collection<T> getAll();
 
 }

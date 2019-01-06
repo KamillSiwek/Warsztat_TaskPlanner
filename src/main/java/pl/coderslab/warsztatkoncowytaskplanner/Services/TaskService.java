@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderslab.warsztatkoncowytaskplanner.DTO.TaskDto;
 import pl.coderslab.warsztatkoncowytaskplanner.Entities.Task;
+import pl.coderslab.warsztatkoncowytaskplanner.Repositories.CategoryRepository;
 import pl.coderslab.warsztatkoncowytaskplanner.Repositories.TaskRepository;
 
 import java.util.Collection;
@@ -15,10 +16,12 @@ import java.util.stream.Collectors;
     public class TaskService implements BaseService<TaskDto, Long> {
 
         private final TaskRepository taskRepository;
+        private final CategoryRepository categoryRepository;
 
         @Autowired
-        public TaskService(TaskRepository taskRepository) {
+        public TaskService(TaskRepository taskRepository, CategoryRepository categoryRepository) {
             this.taskRepository = taskRepository;
+            this.categoryRepository =categoryRepository;
         }
 
         @Override
@@ -26,6 +29,7 @@ import java.util.stream.Collectors;
             Task task = new Task();
             task.setName(dto.getName());
             task.setDescription(dto.getDescription());
+            task.setCategory(categoryRepository.findCategoryByName(dto.getCategory().getName()));
             taskRepository.save(task);
             return task.toDto();
         }
@@ -35,7 +39,7 @@ import java.util.stream.Collectors;
             Task task = taskRepository.findTaskById(id);
             task.setName(dto.getName());
             task.setDescription(dto.getDescription());
-            task.setCategory(dto.getCategory());
+            task.setCategory(categoryRepository.findCategoryByName(dto.getCategory().getName()));
             task.setComments(dto.getComments());
             taskRepository.save(task);
             return task.toDto();
