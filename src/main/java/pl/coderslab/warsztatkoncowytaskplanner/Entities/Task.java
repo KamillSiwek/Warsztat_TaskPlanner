@@ -15,7 +15,8 @@ public class Task {
 
   private String name;
   private String description;
-  private LocalDateTime created;
+  @OneToMany
+  private Category category;
   @Embedded private Creation creation = new Creation();
   @Embedded private TaskStatus taskStatus = new TaskStatus();
 
@@ -41,14 +42,6 @@ public class Task {
 
   public void setDescription(String description) {
     this.description = description;
-  }
-
-  public LocalDateTime getCreated() {
-    return created;
-  }
-
-  public void setCreated(LocalDateTime created) {
-    this.created = created;
   }
 
   public Creation getCreation() {
