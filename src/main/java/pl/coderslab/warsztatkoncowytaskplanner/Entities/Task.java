@@ -5,7 +5,6 @@ import pl.coderslab.warsztatkoncowytaskplanner.Entities.Embedables.Creation;
 import pl.coderslab.warsztatkoncowytaskplanner.Entities.Embedables.TaskStatus;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 public class Task {
@@ -15,7 +14,7 @@ public class Task {
 
   private String name;
   private String description;
-  @OneToMany
+  @ManyToOne
   private Category category;
   @Embedded private Creation creation = new Creation();
   @Embedded private TaskStatus taskStatus = new TaskStatus();
@@ -58,6 +57,14 @@ public class Task {
 
   public void setTaskStatus(TaskStatus taskStatus) {
     this.taskStatus = taskStatus;
+  }
+
+  public Category getCategory() {
+    return category;
+  }
+
+  public void setCategory(Category category) {
+    this.category = category;
   }
 
   @Transient

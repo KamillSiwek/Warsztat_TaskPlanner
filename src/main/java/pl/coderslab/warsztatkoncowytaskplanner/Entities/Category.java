@@ -14,17 +14,12 @@ public class Category {
     private Long id;
     private String name;
     private String description;
-    @ManyToOne
+    @OneToMany(mappedBy = "category")
     private List<Task> tasks = new ArrayList<>();
 
     public Category() {
     }
 
-    public Category(Long id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
 
     public Long getId() {
         return id;
@@ -48,6 +43,14 @@ public class Category {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     @Transient
