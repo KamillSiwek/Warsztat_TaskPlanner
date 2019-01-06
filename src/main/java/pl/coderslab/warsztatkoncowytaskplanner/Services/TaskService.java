@@ -1,15 +1,17 @@
 package pl.coderslab.warsztatkoncowytaskplanner.Services;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.coderslab.warsztatkoncowytaskplanner.DTO.TaskDto;
 import pl.coderslab.warsztatkoncowytaskplanner.Entities.Task;
 import pl.coderslab.warsztatkoncowytaskplanner.Repositories.TaskRepository;
 
+import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-
-    @Service
+@Service
     public class TaskService implements BaseService<TaskDto, Long> {
 
         private final TaskRepository taskRepository;
@@ -22,16 +24,16 @@ import java.util.stream.Collectors;
         @Override
         public TaskDto save(TaskDto dto) {
             Task task = new Task();
-            task.setTitle(dto.getTitle());
+            task.setName(dto.getName());
             task.setDescription(dto.getDescription());
             taskRepository.save(task);
             return task.toDto();
         }
 
         @Override
-        public TaskDto update(TaskDto dto) {
-            Task task = taskRepository.findTaskById(dto.getId());
-            task.setTitle(dto.getTitle());
+        public TaskDto update(TaskDto dto, Long id) {
+            Task task = taskRepository.findTaskById(id);
+            task.setName(dto.getName());
             task.setDescription(dto.getDescription());
             taskRepository.save(task);
             return task.toDto();

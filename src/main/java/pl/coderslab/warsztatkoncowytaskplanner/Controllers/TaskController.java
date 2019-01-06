@@ -2,6 +2,7 @@ package pl.coderslab.warsztatkoncowytaskplanner.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.warsztatkoncowytaskplanner.DTO.TaskDto;
 import pl.coderslab.warsztatkoncowytaskplanner.Services.TaskService;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
@@ -35,15 +36,15 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
             }
         }
 
-        @GetMapping(path = "/all", produces = APPLICATION_JSON_VALUE)
+        @GetMapping(produces = APPLICATION_JSON_VALUE)
         public Result getAll() {
             return Result.ok(taskService.getAll());
         }
 
         @PutMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
-        public Result put(@RequestBody TaskDto taskDto){
+        public Result put(@RequestBody TaskDto taskDto, @PathVariable Long id){
             if (taskDto != null) {
-                return Result.ok(taskService.save(taskDto));
+                return Result.ok(taskService.update(taskDto,id));
             }else {
                 return Result.error("Error");
             }

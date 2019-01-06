@@ -7,7 +7,7 @@ public interface BaseService<D, I extends Serializable> {
 
     D save(D dto);
 
-    D update(D dto);
+    D update(D dto, I id);
 
     D find(I id);
 
