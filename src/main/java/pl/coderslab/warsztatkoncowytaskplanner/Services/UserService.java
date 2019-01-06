@@ -24,7 +24,7 @@ public class UserService implements BaseService<UserDto, Long> {
     public UserDto save(UserDto dto) {
         User user = new User();
         user.setName(dto.getName());
-        user.setDescription(dto.getDescription());
+
         userRepository.save(user);
         return user.toDto();
     }
@@ -33,7 +33,7 @@ public class UserService implements BaseService<UserDto, Long> {
     public UserDto update(UserDto dto, Long id) {
         User user = userRepository.findUserById(id);
         user.setName(dto.getName());
-        user.setDescription(dto.getDescription());
+
         userRepository.save(user);
         return user.toDto();
     }
