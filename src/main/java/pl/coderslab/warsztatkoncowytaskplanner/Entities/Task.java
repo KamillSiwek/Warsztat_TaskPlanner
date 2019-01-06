@@ -5,6 +5,8 @@ import pl.coderslab.warsztatkoncowytaskplanner.Entities.Embedables.Creation;
 import pl.coderslab.warsztatkoncowytaskplanner.Entities.Embedables.TaskStatus;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Task {
@@ -15,8 +17,13 @@ public class Task {
   private String name;
   private String description;
   @ManyToOne
+  @JoinColumn(name = "category_id")
   private Category category;
+  @OneToMany(mappedBy = "task")
+  private List<Comment> comments = new ArrayList<>();
+
   @Embedded private Creation creation = new Creation();
+
   @Embedded private TaskStatus taskStatus = new TaskStatus();
 
   public Long getId() {
@@ -65,6 +72,14 @@ public class Task {
 
   public void setCategory(Category category) {
     this.category = category;
+  }
+
+  public List<Comment> getComments() {
+    return comments;
+  }
+
+  public void setComments(List<Comment> comments) {
+    this.comments = comments;
   }
 
   @Transient

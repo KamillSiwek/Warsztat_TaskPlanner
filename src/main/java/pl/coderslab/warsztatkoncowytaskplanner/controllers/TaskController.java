@@ -1,4 +1,4 @@
-package pl.coderslab.warsztatkoncowytaskplanner.Controllers;
+package pl.coderslab.warsztatkoncowytaskplanner.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +8,7 @@ import pl.coderslab.warsztatkoncowytaskplanner.Services.TaskService;
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
     @RestController
-    @RequestMapping("/task")
+    @RequestMapping("/tasks")
     public class TaskController {
 
         private final TaskService taskService;

@@ -35,6 +35,8 @@ import java.util.stream.Collectors;
             Task task = taskRepository.findTaskById(id);
             task.setName(dto.getName());
             task.setDescription(dto.getDescription());
+            task.setCategory(dto.getCategory());
+            task.setComments(dto.getComments());
             taskRepository.save(task);
             return task.toDto();
         }

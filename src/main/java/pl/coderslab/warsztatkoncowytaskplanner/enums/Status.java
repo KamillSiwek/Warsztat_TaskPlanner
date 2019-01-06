@@ -1,7 +1,7 @@
 package pl.coderslab.warsztatkoncowytaskplanner.enums;
 
 public enum Status {
-    AWAITING_ASSIGNMENT,
+    NEW,
     IN_PROGRESS,
     INCOMPLETE,
     COMPLETE,

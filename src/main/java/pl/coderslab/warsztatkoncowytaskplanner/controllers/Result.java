@@ -1,4 +1,4 @@
-package pl.coderslab.warsztatkoncowytaskplanner.Controllers;
+package pl.coderslab.warsztatkoncowytaskplanner.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
