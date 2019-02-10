@@ -1,1 +1,1 @@
-# Warsztat_TaskPlanner
+# Workshop project - Task Planner
